@@ -11,7 +11,10 @@ and published to its extension registry. It differs from upstream in these ways:
 - The language server is started with the arguments current Roslyn builds accept
   (`--autoLoadProjects`, and no `--razorSourceGenerator` or `--razorDesignTimePath`).
 - Small highlighting and C# injection fixes in `languages/razor/`.
-- The grammar is pinned to an exact commit instead of `main`, so builds are reproducible.
+- The grammar comes from [mentenaz/tree-sitter-razor](https://github.com/mentenaz/tree-sitter-razor),
+  a fork that reads braces as text inside HTML elements (so `<style>`, `<script>` and JSON parse),
+  and supports `@@` and `@:`. It is pinned to an exact commit instead of `main`, so builds are
+  reproducible.
 
 Original work by Daniel Braz, under the MIT licence (see `LICENSE`).
 
