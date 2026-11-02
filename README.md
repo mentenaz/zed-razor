@@ -2,6 +2,19 @@
 
 Razor (`.razor`, `.cshtml`) support for the [Zed editor](https://zed.dev) — syntax highlighting, IntelliSense, diagnostics, go-to-definition, and more for ASP.NET Blazor/Razor Pages.
 
+## About this fork
+
+This is a fork of [dsbraz/zed-razor](https://github.com/dsbraz/zed-razor), maintained by
+[Mentenaz](https://github.com/mentenaz) for [Mentenaz Forge Super](https://forge.mentenaz-server.com)
+and published to its extension registry. It differs from upstream in these ways:
+
+- The language server is started with the arguments current Roslyn builds accept
+  (`--autoLoadProjects`, and no `--razorSourceGenerator` or `--razorDesignTimePath`).
+- Small highlighting and C# injection fixes in `languages/razor/`.
+- The grammar is pinned to an exact commit instead of `main`, so builds are reproducible.
+
+Original work by Daniel Braz, under the MIT licence (see `LICENSE`).
+
 ## Features
 
 - **Syntax Highlighting** — Razor directives (`@page`, `@model`, `@inject`, `@code`, etc.), control structures (`@if`, `@foreach`, `@switch`), explicit/implicit expressions, HTML tags and Blazor components (PascalCase)

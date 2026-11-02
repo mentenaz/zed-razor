@@ -69,6 +69,15 @@
 ((razor_cs_statement) @injection.content
   (#set! injection.language "csharp"))
 
+((csharp_statement) @injection.content
+  (#set! injection.language "csharp"))
+
+((csharp_code) @injection.content
+  (#set! injection.language "csharp"))
+
+((csharp_expression) @injection.content
+  (#set! injection.language "csharp"))
+
 (html_element
   (html_start_tag
     name: (tag_name) @_tag)
