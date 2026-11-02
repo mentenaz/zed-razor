@@ -10,7 +10,9 @@ and published to its extension registry. It differs from upstream in these ways:
 
 - The language server is started with the arguments current Roslyn builds accept
   (`--autoLoadProjects`, and no `--razorSourceGenerator` or `--razorDesignTimePath`).
-- Small highlighting and C# injection fixes in `languages/razor/`.
+- Small highlighting and C# injection fixes in `languages/razor/`, and JavaScript injection for
+  inline event handlers (`onclick="showTab('one')"`) and, combined into one program, for
+  `<script>` blocks that contain Razor values.
 - The grammar comes from [mentenaz/tree-sitter-razor](https://github.com/mentenaz/tree-sitter-razor),
   a fork that reads braces as text inside HTML elements (so `<style>`, `<script>` and JSON parse),
   allows the other kind of quote inside a quoted attribute value (so `onclick="show('x')"`
@@ -18,6 +20,25 @@ and published to its extension registry. It differs from upstream in these ways:
   reproducible.
 
 Original work by Daniel Braz, under the MIT licence (see `LICENSE`).
+
+## Future improvements
+
+Ideas that are not built yet, roughly in the order they would be done:
+
+1. **`<script>` and `<style>` as raw-text elements** (in the grammar, `mentenaz/tree-sitter-razor`).
+   Today a `<` inside a script (`for (var i = 0; i < 10; i++)`) breaks the parse, and markup-looking
+   text inside a string (`"<div></div>"`) is read as real elements. Inside these two elements only the
+   closing tag should end the text, while `@` expressions are still parsed.
+2. **Hover and completion for JavaScript and CSS inside `<script>` and `<style>`.** Injections only
+   colour the code; the editor picks language servers per file, so no JavaScript server sees these
+   regions. A small second language server for Razor files could answer only when the cursor is inside
+   a script or style block: it would blank out the rest of the file with spaces (so every position stays
+   the same and nothing needs translating), hand that virtual document to a TypeScript or CSS server, and
+   return its answers. Without type definitions, `$` would be unknown, so errors from those regions would
+   be turned off and only hover and completion offered.
+3. Parse expressions inside an `@:` line instead of keeping the whole line as text.
+4. Read `user@example.com` as text, as Razor does, instead of as an expression.
+5. C# injection for Blazor directive attributes such as `@onclick="Handler"`.
 
 ## Features
 
