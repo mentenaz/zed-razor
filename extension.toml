@@ -1,6 +1,6 @@
 id = "razor"
 name = "Razor"
-version = "0.1.2"
+version = "0.1.3"
 schema_version = 1
 authors = ["Daniel Braz <dsbraz@dsbraz.com>"]
 description = "Razor (.razor, .cshtml) syntax highlighting and language support for ASP.NET Blazor/Razor Pages"
@@ -12,7 +12,7 @@ version = "0.7.0"
 
 [grammars.razor]
 repository = "https://github.com/mentenaz/tree-sitter-razor"
-rev = "d4a284f151f692509f0a2afaac0d69b0c970c85c"
+rev = "78f349e603ea1867ebf0f74d8ea9aee90461eec8"
 
 [language_servers.roslyn-razor]
 language = "Razor"
